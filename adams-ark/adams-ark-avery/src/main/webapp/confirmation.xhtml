@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Pet Booking Page</title>
+    <h:outputStylesheet library="css" name="confirmation.css"/>
+    <link rel = "icon" type = "image/jpeg" href ="#{resource['ark.jpg']}" />
+
+</h:head>
+<h:body>
+	<div class="Confirmation">
+		<h1>Confirmation</h1>
+		<p>Please read the booking information carefully and confirm:  </p>
+		
+		<h2>Pet Details</h2>
+    		<h:form>
+	        	<h:dataTable value="#{orderStore.allOrders}" var="order" border="1" cellpadding="5">
+	
+	            <h:column>
+	                <f:facet name="header">Owner Name</f:facet>
+	                #{order.booking.ownerName}
+	            </h:column>
+	
+	            <h:column>
+	                <f:facet name="header">Pet Name</f:facet>
+	                #{order.booking.petName}
+	            </h:column>
+	
+	            <h:column>
+	                <f:facet name="header">Pet Type</f:facet>
+	                #{order.booking.petType}
+	            </h:column>
+	
+	            <h:column>
+	                <f:facet name="header">Check-In</f:facet>
+	                <h:outputText value="#{order.booking.checkInDate}">
+	                    <f:convertDateTime pattern="yyyy-MM-dd" />
+	                </h:outputText>
+	            </h:column>
+	
+	            <h:column>
+	                <f:facet name="header">Check-Out</f:facet>
+	                <h:outputText value="#{order.booking.checkOutDate}">
+	                    <f:convertDateTime pattern="yyyy-MM-dd" />
+	                </h:outputText>
+	            </h:column>
+	
+	            <h:column>
+	                <f:facet name="header">Special Notes</f:facet>
+	                #{order.booking.specialNotes}
+	            </h:column>
+				
+	            <h:column>
+	                <f:facet name="header">Services</f:facet>
+	                #{order.showServices()}
+	            </h:column>
+	        	</h:dataTable>
+	        	<p>Total: </p>
+	        	<button>Pay</button>
+    		</h:form>
+	</div>
+	
+</h:body>
+</html>
